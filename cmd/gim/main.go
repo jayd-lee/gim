@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "github.com/jayd-lee/gim/internal/editor"
 
 func main() {
-	fmt.Println("init")
+	editor.Run()
 }
