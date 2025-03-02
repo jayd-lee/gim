@@ -21,14 +21,20 @@ func Run() {
 	}
 	defer termbox.Close()
 
-	width, height := termbox.Size()
-	message := "gim - a text editor in go"
-	messageWidth := runewidth.StringWidth(message)
-	col := (width - messageWidth) / 2
-	row := height / 2
+	for {
+		width, height := termbox.Size()
+		message := "gim - a text editor in go"
+		messageWidth := runewidth.StringWidth(message)
+		col := (width - messageWidth) / 2
+		row := height / 2
 
-	printMessage(col, row, termbox.ColorDefault, termbox.ColorDefault, message)
-	termbox.Flush()
+		printMessage(col, row, termbox.ColorDefault, termbox.ColorDefault, message)
+		termbox.Flush()
 
-	termbox.PollEvent()
+		event := termbox.PollEvent()
+		if event.Type == termbox.EventKey && event.Key == termbox.KeyEsc {
+			break
+		}
+	}
+
 }
